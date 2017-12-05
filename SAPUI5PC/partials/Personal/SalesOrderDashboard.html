@@ -1,0 +1,248 @@
+<div class='content-wrapper' ng-init="app.settings.pagetitle = 'Sales Order Dashboard';">
+	<div class="col-lg-12" ng-controller="SoDashboardController" ng-init='refresh()' >
+
+<div class="col-lg-12">
+        <section class="box ">
+            <header class="panel_header">
+                <h2 class="title pull-left">Sales Order Dashboard ( Date : {{ todayDate | date }})</h2>
+                <div class="actions panel_actions pull-right">
+                    <i class="box_toggle material-icons">expand_more</i>
+                    
+                </div>
+            </header>
+			
+			
+			
+            <div class="content-body padding-bottom-20">
+                
+				
+					<h3 style="text-align:center" >Sales Order Dashboard - Last Update {{ refreshedDate }} </h3>
+				
+		
+				
+					<uib-progressbar value="counter" class="progress-striped active" value="dynamic" type="info">Next Refresh...   </uib-progressbar>
+						
+                    
+                    
+            </div>
+            </div>
+        </section>
+	
+
+
+
+		
+		<section class="box ">
+		</section>
+		
+		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20">
+		
+		</div>
+		
+		
+		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20">
+			<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+                        <div class="wid-social persoWidget" style="cursor:pointer" ng-click="RedirectToSoStatus('SUPERDAIWA')" >						
+								<i ng-class=" (DaiwaError>0) ? 'material-icons icon-lg icon-danger pull-right' : ( (DaiwaWarning>0) ? 'material-icons icon-lg icon-warning pull-right' : 'material-icons icon-lg icon-success pull-right') " style="" >{{  (DaiwaError>0) ? "report_problem" : ( (DaiwaWarning>0) ? "report_problem" : "check_circle" ) }}</i>
+                            <div class="social-info">
+								<h3 class="bold"> SUPERDAIWA</h3>
+								</br>
+								<h3 class=" count "> Ok : </h3>
+                                <h3 count-to="{{ DaiwaOk }}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+                                <h3 class=" count "> In Progress : </h3>
+                                <h3 count-to="{{ DaiwaWarning }}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+                                <h3 class=" count "> Error : </h3>
+                                <h3 count-to="{{ DaiwaError }}" value="0" duration="1" class="number_counter  count "></h3>
+                            </div>
+                        </div>
+            </div>
+			
+			
+			
+			<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+                        <div class="wid-social persoWidget" style="cursor:pointer" ng-click="RedirectToSoStatus('EBEST')" >	
+									<!--					
+								<i ng-class="{ true : 'material-icons icon-lg icon-warning pull-right' , false : 'material-icons icon-lg icon-success pull-right' } [ebestWarning>0] " style="" >{{  (ebestError>0) ? "report_problem" : (  (ebestWarning>0) ? "sms_failed" : "check_circle" ) }}</i>
+								-->
+								
+								
+								<i ng-class="(ebestError>0) ? 'material-icons icon-lg icon-danger pull-right' : ( (ebestWarning>0) ? 'material-icons icon-lg icon-warning pull-right' : 'material-icons icon-lg icon-success pull-right') " style="" >{{  (ebestError>0) ? "report_problem" : ( (ebestWarning>0) ? "report_problem" : "check_circle" )  }}</i>
+								
+								
+                            <div class="social-info">
+								<h3 class="bold"> EBEST</h3>
+								</br>
+								<h3 class=" count "> Ok : </h3>
+                                <h3 count-to="{{ebestOk}}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+                                <h3 class=" count "> In Progress : </h3>
+                                <h3 count-to="{{ ebestWarning }}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+                                <h3 class=" count "> Error : </h3>
+                                <h3 count-to="{{ebestError}}" value="0" duration="1" class="number_counter  count "></h3>
+                            </div>
+                        </div>
+            </div>
+			
+			<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+                        <div class="wid-social persoWidget" style="cursor:pointer" ng-click="RedirectToSoStatus('Manual')" >						
+								<i ng-class="{ true : 'material-icons icon-lg icon-danger pull-right' , false : 'material-icons icon-lg icon-success pull-right' } [manualError>0] " style="" >{{  (manualError>0) ? "report_problem" : "check_circle" }}</i>
+                            <div class="social-info">
+								<h3 class="bold"> Manual</h3>
+								</br>
+								<h3 class=" count "> Ok : </h3>
+                                <h3 count-to="{{ manualOk }}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+                                <h3 class=" count "> In Progress : </h3>
+                                <h3 count-to="{{ manualWarning }}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+                                <h3 class=" count "> Error : </h3>
+                                <h3 count-to="{{ manualError }}" value="0" duration="1" class="number_counter  count "></h3>
+                            </div>
+                        </div>
+            </div>
+			
+			
+			
+			 
+                
+        </div>
+		
+		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20"  >
+		
+		<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+                        <div class="wid-social persoWidget" style="cursor:pointer" ng-click="RedirectToSoStatus('EOS-Normal')">						
+								<i ng-class="(eosNormalError>0) ? 'material-icons icon-lg icon-danger pull-right' : ( (eosNormalWarning>0) ? 'material-icons icon-lg icon-warning pull-right' : 'material-icons icon-lg icon-success pull-right') " style="" >{{  (eosNormalError>0) ? "report_problem" : ( (eosNormalWarning>0) ? "report_problem" : "check_circle" ) }}</i>
+                            <div class="social-info">
+								<h3 class="bold"> EOS Normal</h3>
+								</br>
+								<h3 class=" count "> Ok : </h3>
+                                <h3 count-to="{{eosNormalOk}}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+                                <h3 class=" count "> In Progress : </h3>
+                                <h3 count-to="{{ eosNormalWarning }}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+                                <h3 class=" count "> Error : </h3>
+                                <h3 count-to="{{eosNormalError}}" value="0" duration="1" class="number_counter  count "></h3>
+                            </div>
+                        </div>
+        </div>
+		
+		<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+                        <div class="wid-social persoWidget" style="cursor:pointer" ng-click="RedirectToSoStatus('EOS')">						
+								<i ng-class="{ true : 'material-icons icon-lg icon-danger pull-right' , false : 'material-icons icon-lg icon-success pull-right' } [eosError>0] " style="" >{{  (eosError>0) ? "report_problem" : "check_circle" }}</i>
+                            <div class="social-info">
+								<h3 class="bold"> EOS JDC Sales</h3>
+								</br>
+								<h3 class=" count "> Ok : </h3>
+                                <h3 count-to="{{eosOk}}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+                                <h3 class=" count "> In Progress : </h3>
+                                <h3 count-to="{{ eosWarning }}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+                                <h3 class=" count "> Error : </h3>
+                                <h3 count-to="{{eosError}}" value="0" duration="1" class="number_counter  count "></h3>
+                            </div>
+                        </div>
+        </div>
+		
+		<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+                        <div class="wid-social persoWidget" style="cursor:pointer" ng-click="RedirectToSoStatus('EOS')" >						
+								<i ng-class="{ true : 'material-icons icon-lg icon-danger pull-right' , false : 'material-icons icon-lg icon-success pull-right' } [eosError>0] " style="" >{{  (eosError>0) ? "report_problem" : "check_circle" }}</i>
+                            <div class="social-info">
+								<h3 class="bold"> EOS JDC Through</h3>
+								</br>
+								<h3 class=" count "> Ok : </h3>
+                                <h3 count-to="{{eosOk}}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+                                <h3 class=" count "> In Progress : </h3>
+                                <h3 count-to="{{ eosWarning }}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+                                <h3 class=" count "> Error : </h3>
+                                <h3 count-to="{{eosError}}" value="0" duration="1" class="number_counter  count "></h3>
+                            </div>
+                        </div>
+        </div>
+		
+		
+			
+		
+        </div>
+		
+		<div class="col-md-12 col-sm-12 col-xs-12 padding-right-30 padding-left-20"  >
+			
+			<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+                        <div class="wid-social persoWidget" style="cursor:pointer" ng-click="RedirectToSoStatus('NEOS_Normal')" >						
+								<i ng-class="(neosNormalError>0) ? 'material-icons icon-lg icon-danger pull-right' : ( (neosNormalWarning>0) ? 'material-icons icon-lg icon-warning pull-right' : 'material-icons icon-lg icon-success pull-right') " style="" >{{  (neosNormalError>0) ? "report_problem" : ( (neosNormalWarning>0) ? "report_problem" : "check_circle" ) }}</i>
+                            <div class="social-info">
+								<h3 class="bold"> NEOS Normal</h3>
+								</br>
+								<h3 class=" count "> Ok : </h3>
+                                <h3 count-to="{{ neosNormalOk }}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+								<h3 class=" count "> In Progress : </h3>
+                                <h3 count-to="{{ neosNormalWarning }}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+                                <h3 class=" count "> Error : </h3>
+                                <h3 count-to="{{neosNormalError}}" value="0" duration="1" class="number_counter  count "></h3>
+                            </div>
+                        </div>
+        </div>
+			
+			
+			
+			<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+                        <div class="wid-social persoWidget" style="cursor:pointer" ng-click="RedirectToSoStatus('NEOS')" >						
+								<i ng-class="{ true : 'material-icons icon-lg icon-danger pull-right' , false : 'material-icons icon-lg icon-success pull-right' } [neosError>0] " style="" >{{  (neosError>0) ? "report_problem" : "check_circle" }}</i>
+                            <div class="social-info">
+								<h3 class="bold"> NEOS JDC Sales</h3>
+								</br>
+								<h3 class=" count "> Ok : </h3>
+                                <h3 count-to="{{ neosOk }}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+								<h3 class=" count "> In Progress : </h3>
+                                <h3 count-to="{{ neosWarning }}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+                                <h3 class=" count "> Error : </h3>
+                                <h3 count-to="{{neosError}}" value="0" duration="1" class="number_counter  count "></h3>
+                            </div>
+                        </div>
+        </div>
+		
+			<div class="col-lg-4 col-md-4 col-xs-12 col-sm-6">
+                        <div class="wid-social persoWidget" style="cursor:pointer" ng-click="RedirectToSoStatus('NEOS')" >						
+								<i ng-class="{ true : 'material-icons icon-lg icon-danger pull-right' , false : 'material-icons icon-lg icon-success pull-right' } [neosError>0] " style="" >{{  (neosError>0) ? "report_problem" : "check_circle" }}</i>
+                            <div class="social-info">
+								<h3 class="bold"> NEOS JDC Through</h3>
+								</br>
+								<h3 class=" count "> Ok : </h3>
+                                <h3 count-to="{{ neosOk }}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+								<h3 class=" count "> In Progress : </h3>
+                                <h3 count-to="{{ neosWarning }}" value="0" duration="1" class="number_counter  count "></h3>
+								</br>
+                                <h3 class=" count "> Error : </h3>
+                                <h3 count-to="{{neosError}}" value="0" duration="1" class="number_counter  count "></h3>
+                            </div>
+                        </div>
+        </div>
+			
+			
+                
+				
+             
+			 
+                
+                
+        </div>
+		
+		
+			
+					
+					
+					
+					
+
+		</div>	
