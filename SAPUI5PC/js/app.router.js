@@ -1422,7 +1422,7 @@ angular.module('app')
 					  domain: 'sapui5.auth0.com',
 					  responseType: 'code',
 					  audience: 'https://sapui5.auth0.com/userinfo',
-					  redirectUri: 'http://EJX0001638:Power124@10.139.53.135:8000/eBestDesktopReport/WebContent/',
+					  redirectUri: 'http://EJX0001638:Power124@10.98.53.12:8000/eBestDesktopReport/WebContent/index.html',
 					  scope: 'openid'
 					}); 
 					
